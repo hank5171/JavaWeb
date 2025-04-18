@@ -30,4 +30,20 @@ public class DrinkOrder {
 		String iceText = iceTable.get(ice);
 		return String.format("您點了一杯  %s （%s，%s)， 價格: %d 元",type,size,iceText,price);
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public boolean isIce() {
+		return ice;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
 }

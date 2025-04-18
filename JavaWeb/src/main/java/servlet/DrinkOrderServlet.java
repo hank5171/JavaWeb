@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,6 +29,11 @@ public class DrinkOrderServlet extends HttpServlet {
 		}
 		
 		DrinkOrder drink = new DrinkOrder(type,size,ice);
-		resp.getWriter().print(drink.getInfo());
+		//resp.getWriter().print(drink.getInfo());
+		
+		//建立分派器
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/drink_order.jsp");
+		req.setAttribute("DrinkOrder", drink);
+		rd.forward(req, resp);
 	}
 }
