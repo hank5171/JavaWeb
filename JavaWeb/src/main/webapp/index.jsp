@@ -17,6 +17,9 @@
 			<li>
 				<a href="/JavaWeb/lottery">LotteryServlet</a> (使用 Model 1 [Servlet + JSP])
 			</li>
+			<li>
+				<a href="/JavaWeb/coffeeOrder">LotteryServlet</a> (使用 Model 1 [Servlet + JSP])
+			</li>
 		</ol>
 		
 	</body>
