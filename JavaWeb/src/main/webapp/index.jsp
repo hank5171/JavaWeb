@@ -7,6 +7,17 @@
 		<title>My JavaWeb</title>
 	</head>
 	<body>
-		我的 JavaWeb 首頁 
+		<h1>我的 JavaWeb 首頁</h1>
+		<h2>Servlet 應用</h2>
+		<ol>
+			<li>
+				<%-- 絕對路徑 --%>
+				<a href="http://localhost:8080/JavaWeb/hello">HelloServlet</a>  (使用 Model 0 [只用Servlet 或JSP])
+			</li>
+			<li>
+				<a href="/JavaWeb/lottery">LotteryServlet</a> (使用 Model 1 [Servlet + JSP])
+			</li>
+		</ol>
+		
 	</body>
 </html>
