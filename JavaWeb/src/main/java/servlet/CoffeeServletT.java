@@ -15,7 +15,7 @@ public class CoffeeServletT extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/coffee_formT.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/coffee_form.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -33,7 +33,7 @@ public class CoffeeServletT extends HttpServlet{
 		Coffee coffee = new Coffee(milkAmount, coffeeAmount);
 		
 		// 4.分派到 /WEB-INF/coffee_result.jsp
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/coffee_resultT.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/coffee_result.jsp");
 		req.setAttribute("coffee", coffee); // 將 coffee 資料物件傳給 jsp
 		rd.forward(req, resp);
 		

@@ -51,7 +51,7 @@ public class PhonePlan {
 		static {
 			rules.add(new PhoneRule("商務型", 1499, (min, gb) -> min > 1000 ||  gb > 50));
 			rules.add(new PhoneRule("一般用戶型", 660, (min, gb) -> min > 500 &&  gb > 10));
-			rules.add(new PhoneRule("長輩節省型", 200, (min, gb) -> gb < 1 && min < 20 ));
+			rules.add(new PhoneRule("長輩節省型", 200, (min, gb) -> gb < 1 && min < 200 ));
 		}
 	
 	// PhonePlan 建構子
@@ -67,7 +67,7 @@ public class PhonePlan {
 			this.phoneOnline = Double.parseDouble(phoneOnline);
 	}
 		
-	public String getphoneOnlineType() {
+	public String getPhoneOnlineType() {
 		return rules.stream()
 				.filter(rule -> rule.matches(phoneCall, phoneOnline))
 				.findFirst()
@@ -76,11 +76,11 @@ public class PhonePlan {
 	}
 	
 	// Getter
-	public Integer getphoneCall() {
+	public Integer getPhoneCall() {
 		return phoneCall;
 	}
 	
-	public Double getphoneOnline() {
+	public Double getPhoneOnline() {
 		return phoneOnline;
 	}
 }
