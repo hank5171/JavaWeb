@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %> <!-- 核心庫 -->
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %> <!-- 格式化庫 -->
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %> <!-- 函數庫 -->
+
 <!DOCTYPE html>
 <html>
 	<head>
