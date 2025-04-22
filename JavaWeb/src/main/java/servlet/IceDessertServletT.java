@@ -20,13 +20,15 @@ public class IceDessertServletT extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/TECHER/ice_dessert_form.jsp").forward(req, resp);
-	/*
+		
+		/*
 		String index = req.getParameter("index");
-		if(index == null) {
+		if(index != null) {
 			int indexA = Integer.parseInt(index);
 			iceOrders.remove(indexA-1);
+			req.getRequestDispatcher("/WEB-INF/TECHER/ice_dessert_form.jsp").forward(req, resp);
 		}
-	*/
+		*/
 	}
 
 	@Override
