@@ -4,6 +4,23 @@
   <artifactId>JavaWebOrder</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+  <dependencies>
+  <!-- JSTL -->
+  <dependency>
+    <groupId>jakarta.servlet.jsp.jstl</groupId>
+    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+    <version>3.0.0</version>
+  </dependency>
+		
+  <dependency>
+    <groupId>org.glassfish.web</groupId>
+    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+    <version>3.0.0</version>
+  </dependency>
+ 	
+</dependencies>
+
   <build>
     <plugins>
       <plugin>
