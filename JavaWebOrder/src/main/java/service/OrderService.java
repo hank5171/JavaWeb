@@ -69,5 +69,10 @@ public class OrderService {
 		orderDTO.setMessage("index=" + index + ". 資料修改成功");
 		return orderDTO;
 	}
-	 
+	
+	public int getPrice(List<OrderDTO> orderDTOs,ProductService productService) {
+		return  orderDTOs.stream()
+						 .mapToInt(dto -> productService.getPrice(dto.getMessage()))
+						 .sum();
+	}
 }

@@ -19,10 +19,12 @@
 				<legend>訂單</legend>
 				品名:
 				<select name="item">
-					<option value="牛肉麵">牛肉麵</option>
-					<option value="陽春麵">陽春麵</option>
-					<option value="番茄麵">番茄麵</option>
+    				<c:forEach varStatus="row" var="dto" items="${ productDTOs }" >
+        				<option value="${ dto.item }">${ row.index + 1} ${ dto.item } ${ dto.price }</option>
+  			  		</c:forEach>
 				</select>
+				
+					
 			 	<p />
 			 	<button type="submit" class="button-success pure-button">送出訂單</button>
 			</fieldset>

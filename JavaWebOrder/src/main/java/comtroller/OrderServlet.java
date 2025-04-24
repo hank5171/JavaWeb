@@ -27,9 +27,13 @@ public class OrderServlet extends HttpServlet{
 		// 得到歷史紀錄
 		List<OrderDTO> orderDTOs = orderService.getOrderHistory();	
 		// 計算總金額
-		int totalPrice = orderDTOs.stream()
-				  .mapToInt(dto -> productService.getPrice(dto.getMessage()))
-				  .sum();
+	/*	
+	 * 	int totalPrice = orderDTOs.stream()
+			 .mapToInt(dto -> productService.getPrice(dto.getMessage()))
+			 .sum();			
+	*/
+		int totalPrice = orderService.getPrice(orderDTOs,productService);	
+			
 		// 重導到指令 jsp 並帶上歷史紀錄資料
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/history.jsp");
 		req.setAttribute("orderDTOs",orderDTOs);
@@ -49,5 +53,4 @@ public class OrderServlet extends HttpServlet{
 		req.setAttribute("orderDTO",orderDTO);
 		rd.forward(req, resp);
 	}
-	
 }
