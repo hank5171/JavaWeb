@@ -20,7 +20,7 @@
 				品名:
 				<select name="item">
     				<c:forEach varStatus="row" var="dto" items="${ productDTOs }" >
-        				<option value="${ dto.item }">${ row.index + 1} ${ dto.item } ${ dto.price }</option>
+        				<option value="${ dto.item }">品項:${ row.index + 1} ${ dto.item } 商品價格:${ dto.price }元</option>
   			  		</c:forEach>
 				</select>
 				
