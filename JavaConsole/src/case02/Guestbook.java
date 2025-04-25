@@ -1,4 +1,4 @@
-package case2;
+package case02;
 
 import java.util.Date;
 

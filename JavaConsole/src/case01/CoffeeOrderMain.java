@@ -1,4 +1,4 @@
-package case1;
+package case01;
 
 import java.util.Map;
 
