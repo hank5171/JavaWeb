@@ -19,9 +19,9 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 		try(Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql)) {
 			// 逐一尋訪 rs 中的每一筆紀錄 
-			//並將每一筆紀錄轉成 Todo 物件
+			// 並將每一筆紀錄轉成 Todo 物件
 			// 最後加入到 todos 集合中
-			while (rs.next()) {
+			while(rs.next()) {
 				Todo todo = new Todo();
 				todo.setId(rs.getInt("id"));
 				todo.setText(rs.getString("text"));
@@ -29,19 +29,15 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 				
 				todos.add(todo);
 			}
-			
-			
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return todos;
 	}
 
 	@Override
-	public Todo geTodo(Integer id) {
+	public Todo getTodo(Integer id) {
 		String sql = "select id,text, completed from todo where id = ?";
 		
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -57,7 +53,6 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 					
 					return todo;
 				}
-				
 			}
 			
 		} catch (SQLException e) {
@@ -83,7 +78,7 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 
 	@Override
 	public void updateTodoComplete(Integer id, Boolean completed) {
-		String sql = "update todo set completed = ? where id = ?";
+		String sql = "update todo set completed=? where id=?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			
 			pstmt.setBoolean(1, completed);
@@ -92,7 +87,6 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 			int rowcount = pstmt.executeUpdate(); // 執行修改/新增
 			System.out.println("修改 todo 筆數: " + rowcount);
 			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -100,7 +94,7 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 
 	@Override
 	public void updateTodoText(Integer id, String text) {
-		String sql = "update todo set text = ? where id = ?";
+		String sql = "update todo set text=? where id=?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			
 			pstmt.setString(1, text);
@@ -108,7 +102,6 @@ public class TodoListDaoImpl extends BaseDao implements TodoListDao {
 			
 			int rowcount = pstmt.executeUpdate(); // 執行修改/新增
 			System.out.println("修改 todo 筆數: " + rowcount);
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

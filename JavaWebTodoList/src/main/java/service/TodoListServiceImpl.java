@@ -28,15 +28,15 @@ public class TodoListServiceImpl implements TodoListService{
 	@Override
 	public List<TodoDTO> findAllTodos() {
 		return dao.findAllTodos()
-				.stream()
-				.map(todo -> transferToDTO(todo))
-				//.map(this:: transferToDTO)
-				.toList();
+				  .stream()
+				  .map(this::transferToDTO)
+				  //.map(todo -> transferToDTO(todo))
+				  .toList();
 	}
 
 	@Override
 	public TodoDTO geTodo(Integer id) {
-		return transferToDTO(dao.geTodo(id));
+		return transferToDTO(dao.getTodo(id));
 	}
 
 	@Override
