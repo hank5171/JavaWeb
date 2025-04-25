@@ -1,5 +1,78 @@
 package service;
 
-public class TodoListServiceImpl {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import dao.TodoListDaoImpl;
+import model.dto.TodoDTO;
+import model.entity.Todo;
+import dao.*;
+
+public class TodoListServiceImpl implements TodoListService{
+	
+	private TodoListDao dao = new TodoListDaoImpl();
+	/*
+	@Override
+	public List<TodoDTO> findAllTodos() {
+		List<Todo> todos = dao.findAllTodos();
+		// List<Todo> 轉 List<TodoDTO>
+		List<TodoDTO> todoDTOs = new ArrayList<>();
+		for(Todo todo : todos) {
+			todoDTOs.add(transferToDTO(todo));
+		}
+		return todoDTOs;
+	}
+	*/
+	@Override
+	public List<TodoDTO> findAllTodos() {
+		return dao.findAllTodos()
+				.stream()
+				.map(todo -> transferToDTO(todo))
+				//.map(this:: transferToDTO)
+				.toList();
+	}
+
+	@Override
+	public TodoDTO geTodo(Integer id) {
+		return transferToDTO(dao.geTodo(id));
+	}
+
+	@Override
+	public void addTodo(String text, Boolean completed) {
+		Todo todo = new Todo(0,text,completed);
+		dao.addTodo(todo);
+		
+		
+	}
+
+	@Override
+	public void updateTodoComplete(Integer id, Boolean completed) {
+		dao.updateTodoComplete(id, completed);
+		
+	}
+
+	@Override
+	public void updateTodoText(Integer id, String text) {
+		dao.updateTodoText(id, text);
+		
+	}
+
+	@Override
+	public void deleteTodo(Integer id) {
+		dao.deleteTodo(id);
+		
+	}
+	
+	// 轉換成 DTO
+	private TodoDTO transferToDTO(Todo todo) {
+		return new TodoDTO(todo.getId(),todo.getText(),todo.getCompleted());
+	}
+	
+	// 轉換成 Entity
+	private Todo transferToEntity(TodoDTO todoDTO) {
+		return new Todo(todoDTO.getId(),todoDTO.getText(),todoDTO.getCompleted());
+	}
+	
 }
