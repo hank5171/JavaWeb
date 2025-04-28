@@ -11,3 +11,4 @@ public class User {
 	private String email;
 	private Boolean completed;
 }
+

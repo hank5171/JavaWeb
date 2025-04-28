@@ -17,5 +17,4 @@ public class GetAutuCodeSessionServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		resp.getWriter().print(session.getAttribute("authcode"));
 	}
-	
 }
