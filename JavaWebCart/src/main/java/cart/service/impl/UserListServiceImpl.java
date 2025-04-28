@@ -1,5 +1,7 @@
 package cart.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import cart.dao.UserListDAO;
@@ -10,6 +12,7 @@ import cart.service.UserListService;
 
 public class UserListServiceImpl implements UserListService {
 	private UserListDAO userListDAO = new UserListDAOImpl();
+	/*
 	@Override
 	public List<UserDTO> findAllUsers() {
 		// 1.從 userListDAO 取得 List<User>
@@ -29,5 +32,23 @@ public class UserListServiceImpl implements UserListService {
 		
 		return userDTOs;
 	}
-	
+	*/
+
+	@Override
+	public List<UserDTO> findAllUsers(){
+		
+		List<User> users = userListDAO.findAllUsers();
+		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+		
+		for(User user : users) {
+			UserDTO userDTO = new UserDTO();
+			userDTO.setId(user.getId());
+			userDTO.setUsername(user.getUsername());
+			userDTO.setEmail(user.getEmail());
+			userDTO.setCompleted(user.getCompleted());
+			
+			userDTOs.add(userDTO);
+		}
+		return userDTOs;
+	}
 }
