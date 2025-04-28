@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/user/authcode")
 public class authCodeServlet extends HttpServlet {
@@ -36,8 +37,12 @@ public class authCodeServlet extends HttpServlet {
 		//Random random = new Random();
 		//String authcode = String.format("%04d", random.nextInt(10000));
 		String authcode = generateAuthCode();	
-		ImageIO.write(getAuthCodeImage(authcode), "JPEG", resp.getOutputStream());
 		
+		// 將 autocode 存入到 HttpSession 屬性中
+		HttpSession session = req.getSession();
+		session.setAttribute("authcode", authcode);
+		
+		ImageIO.write(getAuthCodeImage(authcode), "JPEG", resp.getOutputStream());
 	}
 	
 	// 利用 Java2D 產生動態圖像
