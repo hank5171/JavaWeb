@@ -1,0 +1,49 @@
+package cart.service.impl;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import cart.dao.ProductDAO;
+import cart.dao.impl.ProductDAOImpl;
+import cart.model.dto.ProductDTO;
+import cart.model.dto.UserDTO;
+import cart.model.entity.Product;
+import cart.model.entity.User;
+import cart.service.ProductService;
+
+public class ProductServiceImpl implements ProductService{
+		ProductDAO productDAO = new ProductDAOImpl();
+	
+	@Override
+	public List<ProductDTO> findAllProducts() {
+		List<Product> products =  productDAO.findAllProducts();
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		
+		for(Product product : products ) {
+			ProductDTO productDTO = new ProductDTO();
+			productDTO.setProductId(product.getProductId());
+			productDTO.setProductName(product.getProductName());
+			productDTO.setPrice(product.getPrice());
+			productDTO.setQty(product.getQty());
+			productDTO.setImageBase64(product.getImageBase64());
+			productDTO.setTotal((product.getPrice()*product.getQty()));
+			
+			productDTOs.add(productDTO);
+		}
+		return productDTOs;
+	}
+		
+	@Override
+	public void add(String product, String qty, String productImageBase64) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Integer productId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -34,9 +34,9 @@ public class authCodeServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//Random random = new Random();
-		//String authcode = String.format("%04d", random.nextInt(10000));
-		String authcode = generateAuthCode();	
+		Random random = new Random();
+		String authcode = String.format("%04d", random.nextInt(10000));
+		//String authcode = generateAuthCode();	
 		
 		// 將 autocode 存入到 HttpSession 屬性中
 		HttpSession session = req.getSession();
