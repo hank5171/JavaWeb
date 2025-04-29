@@ -1,6 +1,7 @@
 package cart.dao.impl;
 
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import cart.dao.ProductDAO;
 import cart.model.entity.Product;
+
 	
 public class ProductDAOImpl extends BaseDao implements ProductDAO{
 	
@@ -36,6 +38,32 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO{
 		}
 	}
 
+	
+	
+	@Override
+	public Product findById(Integer productId) {
+		String sql = "select product_id, product_name, price,qty, image_base64 from product where product_id = ?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, productId);
+			
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					Product product = new Product();
+					product.setProductId(rs.getInt("product_id"));
+
+					return product;
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
 	@Override
 	public void add(Product product) {
 		// TODO Auto-generated method stub
@@ -44,7 +72,17 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO{
 
 	@Override
 	public void delete(Product productId) {
-		// TODO Auto-generated method stub
+		String sql = "delete from product where product_id = ?";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, productId.getProductId());;
+			
+			int rowcount = pstmt.executeUpdate();
+			System.out.print("刪除產品筆數" + rowcount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

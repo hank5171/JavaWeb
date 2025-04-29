@@ -8,5 +8,6 @@ public interface ProductDAO {
 	List<Product> findAllProducts();
 	void add(Product product);
 	void delete(Product productId);
+	Product findById(Integer productId);
 	
 }

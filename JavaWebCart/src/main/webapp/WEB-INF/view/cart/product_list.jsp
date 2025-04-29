@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>商品列表管理</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		
 		<style>
 			#preview {
 				margin-top: 10px;
@@ -15,7 +16,24 @@
 				border: 1px solid #ddd;
 				padding: 5px;
 			}
+			
+			.button-error{
+            	color: white;
+            	border-radius: 4px;
+            	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        	}
+        	
+       		.button-error {
+           		background: rgb(202, 60, 60);
+           		/* this is a maroon */
+        	}
+        	
+			.word {
+   				text-align: center;
+    			vertical-align: middle;  /* 垂直置中 */
+			}
 		</style>
+		
 	</head>
 	<body>
 		<!-- menu bar -->
@@ -51,13 +69,14 @@
 								<!-- 商品列表 -->
 								<c:forEach var="dto" items="${ productDTOs }">
 						    		<tr>
-						        		<td>${ dto.productId }</td>
-						        		<td>${ dto.productName }</td>
-						        		<td>${ dto.price }</td>
-						    	        <td>${ dto.qty }</td>
-						        		<td>${ dto.total }</td>
-						        		<td>${ dto.imageBase64 }</td>
-						        		<td>X</td>
+						        		<td class="word">${ dto.productId }</td>
+						        		<td class="word">${ dto.productName }</td>
+						        		<td class="word">${ dto.price }</td>
+						    	        <td class="word">${ dto.qty }</td>
+						        		<td class="word">${ dto.total }</td>
+						        		<td class="word">${ dto.imageBase64 }</td>
+						        		<td><a class= "button-error pure-button" href="/JavaWebCart/product/delete?productId=${ dto.productId }">X</a></td>
+						        		
 						   			</tr>
 								</c:forEach>		
 							</tbody>
