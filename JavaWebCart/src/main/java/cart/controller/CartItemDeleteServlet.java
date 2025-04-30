@@ -20,7 +20,7 @@ public class CartItemDeleteServlet extends HttpServlet{
 		int index = Integer.parseInt(req.getParameter("index"));
 		HttpSession session = req.getSession();
 		if (session.getAttribute("cart") != null) {
-			List<OrderDTO> cart = (List<OrderDTO>)session.getAttribute("cart");
+			List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 			cart.remove(index);
 			// 回存給 session (可以不用加)
 			session.setAttribute("cart", cart);
@@ -29,5 +29,22 @@ public class CartItemDeleteServlet extends HttpServlet{
 
 		resp.sendRedirect("/JavaWebCart/product/cart");
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int index = Integer.parseInt(req.getParameter("index"));
+		HttpSession session = req.getSession();
+		if (session.getAttribute("cart") != null) {
+			List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
+			cart.remove(index);
+			// 回存給 session (可以不用加)
+			session.setAttribute("cart", cart);
+		}
+		
+
+		resp.sendRedirect("/JavaWebCart/product/cart");
+	}
+	
+	
 	
 }
