@@ -16,6 +16,17 @@ public class ProductServiceImpl implements ProductService{
 		ProductDAO productDAO = new ProductDAOImpl();
 	
 	@Override
+	public void add(String productName, String price, String qty, String productImageBase64) {
+		Product product = new Product();
+		product.setProductName(productName);
+		product.setPrice(Integer.parseInt(price));
+		product.setQty(Integer.parseInt(qty));
+		product.setImageBase64(productImageBase64);
+			
+		productDAO.add(product);
+	}	
+		
+	@Override
 	public List<ProductDTO> findAllProducts() {
 		List<Product> products =  productDAO.findAllProducts();
 		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
@@ -34,11 +45,7 @@ public class ProductServiceImpl implements ProductService{
 		return productDTOs;
 	}
 		
-	@Override
-	public void add(String product, String qty, String productImageBase64) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void delete(Integer productId) {

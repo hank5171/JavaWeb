@@ -66,8 +66,22 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO{
 
 	@Override
 	public void add(Product product) {
-		// TODO Auto-generated method stub
+		String sql = "insert into product(product_name, price, qty, image_base64) values(?, ?, ?, ?)";
 		
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			// 配置資料到 ?
+			pstmt.setString(1, product.getProductName());
+			pstmt.setInt(2, product.getPrice());
+			pstmt.setInt(3, product.getQty());
+			pstmt.setString(4, product.getImageBase64());
+			
+			// 執行新增
+			int rowcount = pstmt.executeUpdate();
+			System.out.println("新增成功筆數: " + rowcount);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -78,7 +92,7 @@ public class ProductDAOImpl extends BaseDao implements ProductDAO{
 			pstmt.setInt(1, productId.getProductId());;
 			
 			int rowcount = pstmt.executeUpdate();
-			System.out.print("刪除產品筆數" + rowcount);
+			System.out.println("刪除產品筆數: " + rowcount);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

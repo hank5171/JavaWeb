@@ -19,7 +19,8 @@ public class ProductDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String productId = req.getParameter("productId");
 		productService.delete(Integer.parseInt(productId));
-		req.getRequestDispatcher("/").forward(req, resp);
+		
+		resp.sendRedirect("/JavaWebCart/product/list");;
 	}
 }
 
