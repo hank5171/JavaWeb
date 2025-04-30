@@ -8,5 +8,5 @@ import lombok.Data;
 public class Order {
 	private Integer orderId;
 	private Integer userId;
-	private  Date orderDate;
+	private Date orderDate;
 }
