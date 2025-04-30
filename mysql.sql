@@ -25,3 +25,5 @@ CREATE TABLE `product` (
   PRIMARY KEY (`product_id`),
   UNIQUE KEY `product_name` (`product_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+https://developers-dot-devsite-v2-prod.appspot.com/chart/interactive/docs/gallery/piechart?hl=zh-tw
