@@ -67,15 +67,18 @@
 							</thead>
 							<tbody>
 								<!-- 商品列表 -->
-								<c:forEach var="dto" items="${ productDTOs }">
-						    		<tr>
-						        		<td class="word">${ dto.productId }</td>
-						        		<td class="word">${ dto.productName }</td>
-						        		<td class="word">${ dto.price }</td>
-						    	        <td class="word">${ dto.qty }</td>
-						        		<td class="word">${ dto.total }</td>
-						        		<td class="word">${ dto.imageBase64 }</td>
-						        		<td><a class= "button-error pure-button" href="/JavaWebCart/product/delete?productId=${ dto.productId }">X</a></td>
+								<c:forEach var="productDTO" items="${ productDTOs }">
+						    		<tr onmouseover="this.style.backgroundColor='#E0E0ff'" 
+									    onmouseout="this.style.backgroundColor=''">
+						        		<td class="word">${ productDTO.productId }</td>
+						        		<td class="word">${ productDTO.productName }</td>
+						        		<td class="word">${ productDTO.price }</td>
+						    	        <td class="word">${ productDTO.qty }</td>
+						        		<td class="word">${ productDTO.total }</td>
+						        		<td>
+						        			<img width="100" src="${empty productDTO.imageBase64 ? '' : 'data:image/png;base64,' + productDTO.imageBase64}" />
+						        		</td>
+						        		<td><a class= "button-error pure-button" href="/JavaWebCart/product/delete?productId=${ productDTO.productId }">X</a></td>
 						        		
 						   			</tr>
 								</c:forEach>		
