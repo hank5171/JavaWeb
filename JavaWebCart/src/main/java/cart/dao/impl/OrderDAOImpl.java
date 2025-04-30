@@ -54,7 +54,8 @@ public class OrderDAOImpl extends BaseDao implements OrderDAO{
 			return;
 		}
 		
-		sql = "update product set qty - ? where product_id = ?";
+		// 扣抵庫存
+		sql = "update product set qty = qty - ? where product_id = ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
 			pstmt.setInt(1, quantity);
