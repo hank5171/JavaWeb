@@ -42,6 +42,7 @@ public class CartSubmitServlet extends HttpServlet{
 		req.setAttribute("resultTitle", "購物車結帳");
 		req.setAttribute("resultMessage", "購物車結帳完畢");
 		req.getRequestDispatcher("/WEB-INF/view/cart/result.jsp").forward(req, resp);
+		// https://developers-dot-devsite-v2-prod.appspot.com/chart/interactive/docs/gallery/piechart?hl=zh-tw
 	}
 	
 }
