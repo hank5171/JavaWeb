@@ -27,6 +27,11 @@ public class CartSubmitServlet extends HttpServlet{
 		UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 		List<ProductDTO> cart = (List<ProductDTO>)session.getAttribute("cart");
 		
+		if (session.getAttribute("cart") == null){
+			req.setAttribute("resultTitle", "購物車結帳");
+			req.setAttribute("resultMessage", "購物車結帳失敗");
+			req.getRequestDispatcher("/WEB-INF/view/cart/result.jsp").forward(req, resp);
+		}
 		// 新增訂單到資料表
 		orderService.addOrder(userDTO.getId(), cart);
 		// 清空購物車
