@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import org.modelmapper.internal.bytebuddy.implementation.bytecode.constant.DefaultValue;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +10,11 @@ import com.example.demo.model.BMI;
 import com.example.demo.response.ApiResponse;
 
 import java.lang.Math;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @RestController  // 免去撰寫 @ResponeseBody, 但若要透過 jsp 渲染則不試用
 @RequestMapping("/api") // 統一 url 前墜
@@ -76,7 +81,7 @@ public class ApiController {
 	 * */
 	
 	@GetMapping(value = "/bmi", produces = "application/json;charset=utf-8")
-	public ApiResponse calcBmi(@RequestParam(required = false) Double h,
+	public ResponseEntity<ApiResponse<BMI>> calcBmi(@RequestParam(required = false) Double h,
 						  @RequestParam(required = false) Double w) {
 		if(h == null || w == null) {
 			/*
@@ -88,13 +93,57 @@ public class ApiController {
 		    		}
 		    		""";
 			*/
-			return ApiResponse.error(400, "請堤供身高(h)或體重(w)");	
+			return ResponseEntity.badRequest().body(ApiResponse.error("請提供身高(h)或體重(w)"));
 		}
 		
 	    double heightInMeters = h / 100.0;  // 注意：使用 100.0 才會變浮點數
 	    double bmi = w / Math.pow(heightInMeters, 2);
 	    String result = String.format("bmi = %.2f", bmi);  // 小數點兩位
 	    
-	    return ApiResponse.success("BMI 計算成功", new BMI(h,w,bmi));
+	    return ResponseEntity.ok(ApiResponse.success("BMI 計算成功",new BMI(h,w,bmi)));
+	}
+	
+	/*
+	 *  5. 同名多筆資料
+	 *  路徑: /age?age=17&age=21&age=20
+	 *  網址: http://localhost:8080/api/age?age=17&age=21&age=20
+	 *  請計算出平均年齡 
+	 * */
+	
+	@GetMapping(value = "/age", produces = "application/json;charset=utf-8")
+	public ResponseEntity<ApiResponse<Object>> getAverage(@RequestParam(name = "age", required = false) List<String> ages) {
+		if(ages == null || ages.size() == 0) {
+			return ResponseEntity.badRequest().body(ApiResponse.error("請輸入年齡(age)"));
+		}
+		double avg = ages.stream().mapToInt(Integer::parseInt).average().orElseGet(() -> 0);
+		Object map = Map.of("年齡", ages, "平均年齡", String.format("%.1f", avg));
+		return ResponseEntity.ok(ApiResponse.success("計算成功", map));
+	}
+	
+	/*
+	 * 6. Lab 練習: 得到多筆 score 資料
+	 * 路徑: "/exam?score=80&score=100&score=50&score=70&score=30"
+	 * 網址: http://localhost:8080/api/exam?score=80&score=100&score=50&score=70&score=30
+	 * 請自行設計一個方法 此方法可以
+	 * 印出: 最高分=? 最低分=? 平均=? 總分=? 及格分數列出=? 不及格分數列出=?
+	 * */
+	
+	@GetMapping(value = "/exam", produces = "application/json;charset=utf-8")
+	public ResponseEntity<ApiResponse<Object>> getExamInfo(@RequestParam(name = "score", required = false) List<Integer> scores) {
+		// 統計資料
+		IntSummaryStatistics stat = scores.stream().mapToInt(Integer::intValue).summaryStatistics();
+		// 利用 Collectors.partitioningBy 分組
+		// key=true 及格分數 || key=false 不及格分數
+		Map<Boolean, List<Integer>> resultMap = scores.stream()
+				.collect(Collectors.partitioningBy(score -> score >= 60));		Object data = Map.of(
+				"最高分", stat.getMax(),
+				"最低分", stat.getMin(),
+				"平均", stat.getAverage(),
+				"總分", stat.getSum(),
+				"及格", resultMap.get(true),
+				"不及格", resultMap.get(false));
+		
+		return ResponseEntity.ok(ApiResponse.success("計算成功", data));
+		
 	}
 }
