@@ -1,0 +1,139 @@
+Table  
+
+user   			id, username(名字), password(密碼), departmentid(部門編號), status(使用狀態 1則使用中 0則以禁用), addtime(新增時間), updatetime(修改時間) 
+
+order			id, user_id(user的id), order(order_list餐點的id), order_customized(餐點客製), addtime(新增時間), updatetime(修改時間)
+
+order_list		id, ordername(餐點名稱), order_remark(餐點備註), order_money(餐點金額), status(餐點狀態 1則顯示 0則不顯示), addtime(新增時間), updatetime(修改時間)
+
+department 		id, departmentid(部門編號), department(部門名稱)
+
+
+user
+- id
+- username
+- password
++ department_id (建議改名，統一命名風格）
+- status
+- addtime
+- updatetime
+
+
+department
+- id
+- department
+
+
+id (PK)
+name (部門名稱)
+
+order
+- id
+- user_id
+- order (不建議直接塞多個 id，應改為關聯表）
+- order_customized
+- addtime
+- updatetime
+
+order_item
+- id
+- order_id
+- item_id (對應 order_list.id)
+- quantity (數量)
+- customized_text (客製說明)
+
+order_list
+- id
+- ordername
+- order_remark
+- order_money
+- status
+- addtime
+- updatetime
+
+
+
+	user
+
+| 欄位           | 說明        |
+| -------------- | ------- 	   |
+| id (PK)        | 使用者 ID   |
+| username       | 使用者名稱  |
+| password       | 密碼（加密）|
+| department\_id | 部門 FK     |
+| status         | 0/1 使用中  |
+| add\_time      | 建立時間    |
+| update\_time   | 更新時間    |
+
+
+	department
+| 欄位    | 說明     |
+| ------- | -----    |
+| id (PK) | 部門 ID  |
+| name    | 部門名稱 |
+
+	order
+	| 欄位     | 說明         |
+| ------------ | ------       |
+| id (PK)      | 訂單 ID      |
+| user\_id     | 使用者 FK    |   
+| add\_time    | 訂單建立時間 |
+| update\_time | 修改時間     |
+
+
+	order_list（訂單明細）
+| 欄位             | 說明    |
+| ---------------- | -----   |	
+| id (PK)          | 主鍵    |
+| order\_id (FK)   | 訂單 ID |
+| item\_id (FK)    | 餐點 ID |
+| quantity         | 數量    |
+| customized\_text | 客製內容|
+
+
+
+   menu_items（原本的 ）
+| 欄位         | 說明      |	
+| ------------ | -----     |
+| id (PK)      | 餐點 ID   |
+| shop_id (FK) | 餐廳 ID   |
+| name         | 名稱      |
+| description  | 備註說明  |
+| price        | 金額      |
+| status       | 是否顯示  |
+| add\_time    | 新增時間  |
+| update\_time | 修改時間  |
+
+	shop
+|欄位          | 說明      |
+| id		   |           |
+| shop_name    | 餐廳名稱  |
+| tle          | 餐廳電話  |
+| 地址         | 餐廳地址  |
+
+
+文章一個
+
+問題一個
+
+標籤一個
+
+收藏清單
+
+
+list
+
+
+id 
+type 012 1  2
+status 0,1
+text
+
+list_like
+
+list_id like;
+
+list_type
+
+1 文章 2 問題
+
