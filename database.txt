@@ -13,7 +13,7 @@ user
 - id
 - username
 - password
-+ department_id (建議改名，統一命名風格）
++ department_id >> user_role
 - status
 - addtime
 - updatetime
@@ -30,7 +30,7 @@ name (部門名稱)
 order
 - id
 - user_id
-- order (不建議直接塞多個 id，應改為關聯表）
+- order 
 - order_customized
 - addtime
 - updatetime
@@ -56,46 +56,49 @@ order_list
 	user
 
 | 欄位           | 說明        |
-| -------------- | ------- 	   |
-| id (PK)        | 使用者 ID   |
+| -------------- | -------     |
+| user_id (PK)        | 使用者 ID   |
 | username       | 使用者名稱  |
 | password       | 密碼（加密）|
-| department\_id | 部門 FK     |
+| role_id(FK)    | 使用者權限  |
 | status         | 0/1 使用中  |
+| last_login_time| 最近登入時間|
 | add\_time      | 建立時間    |
 | update\_time   | 更新時間    |
 
 
-	department
-| 欄位    | 說明     |
-| ------- | -----    |
-| id (PK) | 部門 ID  |
-| name    | 部門名稱 |
+	role
+| 欄位      | 說明     |
+| -------   | -----    |
+| role_id(PK)| 角色 ID  |
+| level     |  1       | (1,2,3)
+| role_name | 角色名稱 |
 
 	order
-	| 欄位     | 說明         |
+| 欄位         | 說明         |
 | ------------ | ------       |
-| id (PK)      | 訂單 ID      |
+| order_id (PK)| 訂單 ID      |
 | user\_id     | 使用者 FK    |   
 | add\_time    | 訂單建立時間 |
 | update\_time | 修改時間     |
 
+(可以合併)
 
-	order_list（訂單明細）
+	order_list
 | 欄位             | 說明    |
 | ---------------- | -----   |	
 | id (PK)          | 主鍵    |
 | order\_id (FK)   | 訂單 ID |
-| item\_id (FK)    | 餐點 ID |
+| menu\_id (FK)    | 餐點 ID |
 | quantity         | 數量    |
 | customized\_text | 客製內容|
 
 
 
-   menu_items（原本的 ）
+        menu_items
 | 欄位         | 說明      |	
 | ------------ | -----     |
-| id (PK)      | 餐點 ID   |
+| menu_id (PK) | 餐點 ID   |
 | shop_id (FK) | 餐廳 ID   |
 | name         | 名稱      |
 | description  | 備註說明  |
@@ -106,9 +109,9 @@ order_list
 
 	shop
 |欄位          | 說明      |
-| id		   |           |
+| id	       |           |
 | shop_name    | 餐廳名稱  |
-| tle          | 餐廳電話  |
+| tel          | 餐廳電話  |
 | 地址         | 餐廳地址  |
 
 
