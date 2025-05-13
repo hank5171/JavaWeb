@@ -112,4 +112,28 @@ order_list
 | 地址         | 餐廳地址  |
 
 
+文章一個
+
+問題一個
+
+標籤一個
+
+收藏清單
+
+
+list
+
+
+id 
+type 012 1  2
+status 0,1
+text
+
+list_like
+
+list_id like;
+
+list_type
+
+1 文章 2 問題
 
