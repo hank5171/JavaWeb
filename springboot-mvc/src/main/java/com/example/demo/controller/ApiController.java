@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api") // 統一 url 前墜
 public class ApiController {
 	
+    private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
+
 	/*
 	 * 1. 歡迎頁
 	 * 路徑: /api/home
@@ -52,6 +56,7 @@ public class ApiController {
 	@GetMapping("/greet")
 	public String greet(@RequestParam(value = "name", required = true) String username,
 			@RequestParam(value ="age" ,required =  false, defaultValue = "0") Integer userage) {
+		logger.info("執行路徑: /greet 參數: name=" + username + ", &age=" + userage);
 		
 		String result = String.format("Hi %s %d (%s)",
 				username, userage, userage >=18 ? "成年":"未成年");
