@@ -442,3 +442,8 @@ com.example.demo.controller.BookController#findAllBooks() mapped.
 2025-05-14T15:19:21.526+08:00  INFO 6344 --- [springboot-mvc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-05-14T15:19:21.526+08:00  INFO 6344 --- [springboot-mvc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-05-14T15:19:21.527+08:00  INFO 6344 --- [springboot-mvc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-14T16:31:47.178+08:00  INFO 6344 --- [springboot-mvc] [RMI TCP Connection(82)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-05-14T16:31:47.180+08:00  INFO 6344 --- [springboot-mvc] [RMI TCP Connection(82)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-14T16:31:47.182+08:00  INFO 6344 --- [springboot-mvc] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-14T16:31:47.183+08:00  INFO 6344 --- [springboot-mvc] [RMI TCP Connection(82)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-14T16:31:47.185+08:00  INFO 6344 --- [springboot-mvc] [RMI TCP Connection(82)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
