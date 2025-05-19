@@ -17,7 +17,12 @@
 						<td>${ roomDto.roomName }</td>
 						<td>${ roomDto.roomSize }</td>
 						<td><a class="button-success pure-button" href="/room/${ roomDto.roomId }">編輯</a></td>
-						<td><a class="button-error pure-button" href="/room/delete/${ roomDto.roomId }">刪除</a></td>
+						<td>
+							<form style="display:inline" method="post" action="/room/delete/${ roomDto.roomId  }">
+								<button class="button-error pure-button" type="submit">刪除</button>
+								<input type="hidden" name="_method" value="DELETE" />
+							<form/>
+						</td>
 					</tr>	
 				</c:forEach>
 			</tbody>
