@@ -1,3 +1,5 @@
+https://github.com/LyndonYeh/jsoup.git git爬蟲
+
 Table  
 
 user   			id, username(名字), password(密碼), departmentid(部門編號), status(使用狀態 1則使用中 0則以禁用), addtime(新增時間), updatetime(修改時間) 
@@ -57,7 +59,7 @@ order_list
 
 | 欄位           | 說明        |
 | -------------- | -------     |
-| user_id (PK)        | 使用者 ID   |
+| user_id (PK)   | 使用者 ID   |
 | username       | 使用者名稱  |
 | password       | 密碼（加密）|
 | role_id(FK)    | 使用者權限  |
@@ -74,25 +76,17 @@ order_list
 | level     |  1       | (1,2,3)
 | role_name | 角色名稱 |
 
-	order
+(新)
+	order 
 | 欄位         | 說明         |
 | ------------ | ------       |
 | order_id (PK)| 訂單 ID      |
-| user\_id     | 使用者 FK    |   
+| user\_id (FK)| 使用者 FK    |
+| menu\_id (FK)| 餐點 ID      |
+| quantity     | 數量         |
+| customized\_text| 客製內容  |   
 | add\_time    | 訂單建立時間 |
 | update\_time | 修改時間     |
-
-(可以合併)
-
-	order_list
-| 欄位             | 說明    |
-| ---------------- | -----   |	
-| id (PK)          | 主鍵    |
-| order\_id (FK)   | 訂單 ID |
-| menu\_id (FK)    | 餐點 ID |
-| quantity         | 數量    |
-| customized\_text | 客製內容|
-
 
 
         menu_items
@@ -115,4 +109,7 @@ order_list
 | 地址         | 餐廳地址  |
 
 
+| menu\_id (FK)    | 餐點 ID |
+| quantity         | 數量    |
+| customized\_text | 客製內容|
 
