@@ -15,7 +15,7 @@ import com.example.demo.service.CertService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/rest/login")
 public class LoginController {
 	
 	@Autowired
