@@ -29,10 +29,11 @@ CREATE TABLE `menu_items` (
         ON UPDATE CASCADE
 ) COMMENT='餐點總表';
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
     user_id INT AUTO_INCREMENT PRIMARY KEY ,
     username VARCHAR(50) NOT NULL UNIQUE COMMENT '使用者名稱（帳號）',
     `password` VARCHAR(255) NOT NULL COMMENT '使用者密碼（加密儲存）',
+    `password_salt` VARCHAR(255) NOT NULL COMMENT '加密鹽',
     user_role int NOT NULL DEFAULT '2' COMMENT '使用者權限（1:管理員, 2:一般使用者）',
     `status` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '帳號狀態（1 啟用，0 停用）',
     last_login_time DATETIME DEFAULT NULL COMMENT '最近登入時間',
@@ -46,8 +47,7 @@ CREATE TABLE `user` (
 		ON UPDATE CASCADE
 );
 
-
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
 	order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL COMMENT '點餐會員',
     menu_id INT COMMENT '餐點 ID', 
@@ -57,7 +57,7 @@ CREATE TABLE `order` (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新時間',
     CONSTRAINT fk_order_user
 		FOREIGN KEY (user_id)
-		REFERENCES `user`(user_id)
+		REFERENCES `users`(user_id)
 		ON DELETE RESTRICT
 		ON UPDATE CASCADE,
 	CONSTRAINT fk_order_menu_items
