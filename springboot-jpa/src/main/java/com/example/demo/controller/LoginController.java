@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.exception.CertException;
-import com.example.demo.model.entity.UserCert;
+import com.example.demo.model.dto.UserCert;
 import com.example.demo.service.CertService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/rest/login")
+@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
