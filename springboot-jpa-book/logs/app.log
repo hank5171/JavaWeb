@@ -4479,3 +4479,9 @@ org.springframework.transaction.UnexpectedRollbackException: Transaction silentl
 2025-05-26T17:24:57.863+08:00  INFO 2548 --- [springboot-jpa-book] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-05-26T17:24:57.864+08:00  INFO 2548 --- [springboot-jpa-book] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-05-26T17:24:57.868+08:00  INFO 2548 --- [springboot-jpa-book] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-26T17:28:08.619+08:00  INFO 6484 --- [springboot-jpa-book] [RMI TCP Connection(95)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2025-05-26T17:28:08.621+08:00  INFO 6484 --- [springboot-jpa-book] [RMI TCP Connection(95)-127.0.0.1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-26T17:28:08.631+08:00  INFO 6484 --- [springboot-jpa-book] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-26T17:28:08.633+08:00  INFO 6484 --- [springboot-jpa-book] [RMI TCP Connection(95)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-26T17:28:08.634+08:00  INFO 6484 --- [springboot-jpa-book] [RMI TCP Connection(95)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-26T17:28:08.635+08:00  INFO 6484 --- [springboot-jpa-book] [RMI TCP Connection(95)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
