@@ -1,13 +1,18 @@
 package com.example.demo.study.jwt;
 
+import java.util.Date;
+
 import com.example.demo.study.security.KeyUtil;
 import com.nimbusds.jwt.JWTClaimsSet;
 
-import ch.qos.logback.core.subst.Token;
-
-public class SimpleJWT {
+// 建立一個有時效性的 JWT
+public class SimpleLimitedJWT {
 
 	public static void main(String[] args) throws Exception {
+		// 有效時間(10秒)
+		Date expirationTime = new Date(new Date().getTime() + 10_000); // 現在時刻 + 10 秒
+		
+		
 		// 1. 生成簽名密鑰
 		// JWK : 產生簽名用的密鑰(32 bytes)
 		String signingSecret = KeyUtil.generateSecret(32);
@@ -21,6 +26,7 @@ public class SimpleJWT {
 				.claim("Name", "John") // 額外的資料
 				.claim("phone", "0912345678") // 額外的資料
 				.claim("email", "John@gmail.com") // 額外的資料
+				.expirationTime(expirationTime) // 設定有效時間
 				.build();
 		System.out.println("Payload: " + claimsSet);
 				
@@ -28,6 +34,8 @@ public class SimpleJWT {
 		// 將 claimsSet + 簽名 = token
 		String token = KeyUtil.signJWT(claimsSet, signingSecret);
 		System.out.println("Token(JWT): " + token);
+		
+		Thread.sleep(11_000); // 模擬 11 秒後進行驗證
 		
 		// 4. 驗證 Token(JWT)
 		if(KeyUtil.verifyJWTSignature(token, signingSecret)) {
