@@ -1,2 +1,14 @@
 javaweb 
 https://drive.google.com/drive/folders/1VOHuw6osnH6q4jgEeGC_H8wdbXyzT72F
+
+
+
+CREATE TABLE `message` (
+  `message_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL COMMENT '留言使用者ID',
+  `message` varchar(255) DEFAULT NULL COMMENT '留言',
+  PRIMARY KEY (`message_id`),
+  KEY `fk_message_user` (`user_id`),
+  CONSTRAINT `fk_message_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
